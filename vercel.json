@@ -2,11 +2,21 @@
     "version": 2,
     "functions": {
         "api/*.php": {
-            "runtime": "vercel-php@0.5.2"
+            "runtime": "vercel-php@0.4.0"
         }
     },
     "outputDirectory": "public",
+    "buildCommand": "composer install --no-dev --optimize-autoloader && php artisan config:cache && php artisan route:cache && php artisan view:cache",
+    "devCommand": "php artisan serve",
     "routes": [
+        { 
+            "src": "/favicon.ico",
+            "dest": "/public/favicon.ico"
+        },
+        { 
+            "src": "/robots.txt",
+            "dest": "/public/robots.txt"
+        },
         { 
             "src": "/build/(.*)", 
             "dest": "/public/build/$1" 
@@ -48,6 +58,7 @@
         "VIEW_COMPILED_PATH": "/tmp",
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "cookie"
+        "SESSION_DRIVER": "cookie",
+        "APP_KEY": "${APP_KEY}"
     }
 } 
