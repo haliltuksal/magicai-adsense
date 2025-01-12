@@ -4,7 +4,18 @@
     "builds": [
         {
             "src": "api/index.php",
-            "use": "vercel-php@0.6.0"
+            "use": "vercel-php@0.6.0",
+            "config": {
+                "php.ini": {
+                    "extension_dir": "/var/task/php/extensions",
+                    "extension": [
+                        "openssl.so",
+                        "pdo.so",
+                        "pdo_mysql.so",
+                        "mbstring.so"
+                    ]
+                }
+            }
         },
         {
             "src": "public/**",
@@ -22,6 +33,7 @@
         }
     ],
     "env": {
+        "APP_NAME": "Laravel",
         "APP_ENV": "production",
         "APP_DEBUG": "false",
         "APP_URL": "https://yourprojectname.vercel.app",
@@ -36,6 +48,8 @@
         "SESSION_DRIVER": "cookie",
         "VIEW_COMPILED_PATH": "/tmp/views",
         "SSR_TEMP_PATH": "/tmp/ssr",
-        "NODE_PATH": "node"
+        "NODE_PATH": "node",
+        "DB_CONNECTION": "mysql",
+        "FILESYSTEM_DISK": "local"
     }
 } 
