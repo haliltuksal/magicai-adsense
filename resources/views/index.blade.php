@@ -1,7 +1,16 @@
 @extends('layout.app')
 
 @section('content')
+@php
+				$adsenseSettings = App\Models\AdsenseSetting::first();
+			@endphp
 
+			@if($adsenseSettings?->is_active)
+				{{-- Display Reklamları --}}
+				@if($adsenseSettings->display_ads_status)
+					{!! $adsenseSettings->display_ads_code !!}
+				@endif
+			@endif
 <section class="site-section flex items-center justify-center min-h-screen text-center text-white relative py-52 max-md:pb-16 max-md:pt-48 overflow-hidden bg-gradient-to-br from-[#3655df] via-[#A068FA] via-70% to-[#327BD1]" id="banner">
 	<canvas id="banner-bg" class="absolute top-0 start-0 w-full-h-full"></canvas>
 	<div class="container relative">
