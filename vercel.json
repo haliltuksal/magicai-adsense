@@ -4,18 +4,7 @@
     "builds": [
         {
             "src": "api/index.php",
-            "use": "vercel-php@0.6.0",
-            "config": {
-                "php.ini": {
-                    "extension_dir": "/var/task/php/extensions",
-                    "extension": [
-                        "openssl.so",
-                        "pdo.so",
-                        "pdo_mysql.so",
-                        "mbstring.so"
-                    ]
-                }
-            }
+            "use": "@vercel/php"
         },
         {
             "src": "public/**",
@@ -42,13 +31,10 @@
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
         "APP_ROUTES_CACHE": "/tmp/routes.php",
         "APP_SERVICES_CACHE": "/tmp/services.php",
-        "VIEW_COMPILED_PATH": "/tmp",
+        "VIEW_COMPILED_PATH": "/tmp/views",
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
-        "VIEW_COMPILED_PATH": "/tmp/views",
-        "SSR_TEMP_PATH": "/tmp/ssr",
-        "NODE_PATH": "node",
         "DB_CONNECTION": "mysql",
         "FILESYSTEM_DISK": "local"
     }
