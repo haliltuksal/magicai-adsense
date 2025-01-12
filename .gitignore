@@ -16,6 +16,7 @@ Thumbs.db
 
 # Node modules
 /node_modules
+/vendor
 
 # Environment files
 .env.backup
@@ -25,4 +26,7 @@ Thumbs.db
 # IDE Helper Files
 _ide_helper.php
 _ide_helper_models.php
-.phpstorm.meta.php 
+.phpstorm.meta.php
+
+# Vercel
+.vercel 
