@@ -1,16 +1,11 @@
 @extends('layout.app')
 
 @section('content')
-@php
-				$adsenseSettings = App\Models\AdsenseSetting::first();
-			@endphp
 
-			@if($adsenseSettings?->is_active)
-				{{-- Display Reklamları --}}
-				@if($adsenseSettings->display_ads_status)
-					{!! $adsenseSettings->display_ads_code !!}
-				@endif
-			@endif
+@php
+	$settings = App\Models\AdsenseSetting::first();
+@endphp
+
 <section class="site-section flex items-center justify-center min-h-screen text-center text-white relative py-52 max-md:pb-16 max-md:pt-48 overflow-hidden bg-gradient-to-br from-[#3655df] via-[#A068FA] via-70% to-[#327BD1]" id="banner">
 	<canvas id="banner-bg" class="absolute top-0 start-0 w-full-h-full"></canvas>
 	<div class="container relative">
@@ -77,9 +72,17 @@
 	</div>
 </section>
 
+<div class="container">
+	<div style="border: 2px solid #FF5733; padding: 10px; margin: 20px 0; border-radius: 5px;">
+		@if(isset($settings) && $settings->is_active && $settings->display_ads_status)
+			{!! $settings->display_ads_code !!}
+		@endif
+	</div>
+</div>
+
 @if($fSectSettings->features_active == 1)
 <section id="features">
-	<section class="site-section pb-20 pt-32 md:opacity-0 md:translate-y-8 transition-all duration-700 [&.lqd-is-in-view]:opacity-100 [&.lqd-is-in-view]:translate-y-0">
+	<section class="site-section pb-20 pt-16 md:opacity-0 md:translate-y-8 transition-all duration-700 [&.lqd-is-in-view]:opacity-100 [&.lqd-is-in-view]:translate-y-0">
 		<div class="container">
 			<x-section-header
 				title="{!! __($fSectSettings->features_title) !!}"
@@ -96,7 +99,13 @@
 			</div>
 		</div>
 	</section>
-
+	<div class="container">
+		<div style="border: 2px solid #33FF57; padding: 10px; margin: 20px 0; border-radius: 5px;">
+			@if(isset($settings) && $settings->is_active && $settings->in_feed_ads_status)
+				{!! $settings->in_feed_ads_code !!}
+			@endif
+		</div>
+	</div>
     @endif
 
     @if($fSectSettings->generators_active == 1)
@@ -154,9 +163,15 @@
 		</div>
 	</section>
     @endif
-
-
 </section>
+
+<div class="container">
+    <div style="border: 2px solid #3357FF; padding: 10px; margin: 20px 0; border-radius: 5px;">
+        @if(isset($settings) && $settings->is_active && $settings->in_article_ads_status)
+            {!! $settings->in_article_ads_code !!}
+        @endif
+    </div>
+</div>
 
 @if($fSectSettings->custom_templates_active == 1)
 <section class="site-section pb-9 md:opacity-0 md:translate-y-8 transition-all duration-700 [&.lqd-is-in-view]:opacity-100 [&.lqd-is-in-view]:translate-y-0" id="templates">
@@ -439,6 +454,13 @@
     </section>
 @endif
 
+<div class="container">
+    <div style="border: 2px solid #FF33F6; padding: 10px; margin: 20px 0; border-radius: 5px;">
+        @if(isset($settings) && $settings->is_active && $settings->multiplex_ads_status)
+            {!! $settings->multiplex_ads_code !!}
+        @endif
+    </div>
+</div>
 
 @if($setting->gdpr_status == 1)
 <div id="gdpr" class="bg-white fixed z-50 p-2 rounded-full drop-shadow-2xl bottom-12 left-1/2 -translate-x-1/2 max-sm:w-11/12">
